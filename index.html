@@ -1,0 +1,76 @@
+<html>
+<head>
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <title>Samaritan</title>
+ <script type="text/javascript">
+
+    var tl = new Array(
+        "WELCOME TO THE MACHINE",
+        "CONNECTING ...",
+        "SYSTEM ONLINE",
+        " ",
+        " ",
+        "IN THE END",
+        "WE'RE ALL ALONE",
+        "AND NO ONE IS COMING TO SAVE YOU",
+        ".",
+    );
+    var speed = 50;
+    var index = 0;
+        text_pos = 0;
+    var str_length = tl[0].length;
+    var contents, row;
+
+    function type_text() {
+        contents = '';
+        row = Math.max(0, index - 0);
+        while (row < index) {
+            contents += tl[row++] + '\r\n';
+        }
+        document.getElementById("typearea").value = contents + tl[index].substring(0, text_pos) ;
+        if (text_pos++ == str_length) {
+            text_pos = 0;
+            index++;
+            if (index != tl.length) {
+                str_length = tl[index].length;
+                setTimeout("type_text()", 1500);
+            }
+        }
+        else
+            setTimeout("type_text()", speed);
+    }
+    //-->
+</script> 
+    <style type="text/css">
+    @font-face {
+    font-family: magdacleanmono;
+    src: url(font/magdacleanmono-bold.ttf);
+    }
+    .text{
+     font-family:"magdacleanmono";  
+     font-weight:bold;   
+     font-size:25px;
+     font-weight:bold; 
+     letter-spacing: 2px;
+     text-align:center;
+     text-decoration:underline;
+     background:transparent;
+     border-style:none;
+     height:30px;
+     width:400px;
+     resize:none; 
+     overflow:none; 
+    }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="margin:auto;text-align:center;margin-top:300px;">
+    <textarea id="typearea" class="text"></textarea> 
+        <br/>
+        <img src="samaritan.png"/>
+    </div>
+    </form>
+        <script type="text/javascript">type_text();</script> 
+</body>
+</html>
